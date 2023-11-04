@@ -21,41 +21,50 @@ import { GoDotFill } from 'react-icons/go';
 const backgrounds = [bg1, bg2, bg3];
 
 const Landing = () => {
-  //bg state
-  const [currentBg, setCurrentBg] = useState(bg1); // State to keep track of the current background
+  const [currentBg, setCurrentBg] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  //bg change handler
-  const changeBackground = (bg) => {
-    setCurrentBg(bg);
+  const changeBackground = (index) => {
+    if (index !== currentBg && !isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentBg(index);
+        setIsTransitioning(false);
+      }, 100); // Transition time matches CSS animation duration
+    }
   };
 
   return (
     <>
       <Header />
-      <Box
-        height='100vh'
-        width='100vw'
-        bgImage={`url(${currentBg})`}
-        bgPosition='center'
-        bgRepeat='no-repeat'
-        bgSize='cover'
-        position='relative'
-        // display='flex'
-        // flexDirection='column'
-        // justifyContent='center'
-        // alignItems='center'
-        sx={{
-          '::before': {
-            content: `""`,
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            bg: 'blackAlpha.600',
-            zIndex: 0, // Overlay is below the content
-          },
-        }}>
+      <Box position='relative' height='100vh' width='100vw' overflow='hidden'>
+        {/* Background images */}
+        {backgrounds.map((bg, index) => (
+          <Box
+            key={index}
+            bgImage={`url(${bg})`}
+            bgPosition='center'
+            bgRepeat='no-repeat'
+            bgSize='cover'
+            position='absolute'
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            opacity={index === currentBg ? 1 : 0}
+            transition='opacity 1s ease-in-out'
+          />
+        ))}
+        {/* Overlay */}
+        <Box
+          position='absolute'
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          bg='blackAlpha.600'
+          zIndex={1} // Ensure overlay is above the background images but below the content
+        />
         <Box position='relative' zIndex={2} top='40%' ml='150px'>
           {' '}
           <Heading color='#29f0cf' mb='10px' fontSize='60px'>
@@ -98,15 +107,21 @@ const Landing = () => {
             </InputGroup>
           </Box>
         </Box>
-        <Center mt='30px' zIndex={10} position={'relative'} top='400'>
+        ;{/* Dots */}
+        <Center
+          mt='30px'
+          zIndex={2}
+          position='absolute'
+          bottom='50px'
+          width='full'>
           <HStack>
             {backgrounds.map((bg, index) => (
               <Icon
                 key={index}
                 as={GoDotFill}
                 boxSize={'40px'}
-                color={currentBg === bg ? '#29f0cf' : 'gray'}
-                onClick={() => changeBackground(bg)}
+                color={currentBg === index ? '#29f0cf' : 'gray'}
+                onClick={() => changeBackground(index)}
                 cursor='pointer'
               />
             ))}
