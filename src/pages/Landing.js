@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Landing.css';
 import {
   Box,
   Text,
@@ -20,17 +21,43 @@ import { GoDotFill } from 'react-icons/go';
 // Array of background images
 const backgrounds = [bg1, bg2, bg3];
 
+//Array of content
+const content = [
+  {
+    header: 'Your Band. Your Profits.',
+    text: "It's Your Band. It's Your Merch. You deserve 100% of your profits.",
+  },
+  {
+    header: 'Better Than Bandcamp.',
+    text: 'Better layouts. Custom domains. No price gouging. No hidden fees.',
+  },
+  {
+    header: 'Made For Musicians, By Musicians.',
+    text: 'Join the independent artist revolution. Take back your profits.',
+  },
+];
+
 const Landing = () => {
   const [currentBg, setCurrentBg] = useState(0);
+  const [currentContent, setCurrentContent] = useState(content[0]);
+  const [contentAnimation, setContentAnimation] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const changeBackground = (index) => {
     if (index !== currentBg && !isTransitioning) {
       setIsTransitioning(true);
+      setContentAnimation('slide-out'); // Slide out the current content
+
       setTimeout(() => {
         setCurrentBg(index);
+        setCurrentContent(content[index]); // Set the new content
+        setContentAnimation('slide-in'); // Slide in the new content
+      }, 250); // This should match the duration of the slideOutToRight animation
+
+      setTimeout(() => {
         setIsTransitioning(false);
-      }, 100); // Transition time matches CSS animation duration
+        setContentAnimation(''); // Reset the animation class
+      }, 500); // This should be the total duration of both animations
     }
   };
 
@@ -62,17 +89,31 @@ const Landing = () => {
           left={0}
           right={0}
           bottom={0}
-          bg='blackAlpha.600'
+          bg='blackAlpha.700'
           zIndex={1} // Ensure overlay is above the background images but below the content
         />
-        <Box position='relative' zIndex={2} top='40%' ml='150px'>
-          {' '}
+        {/* Animated Content */}
+        <Box
+          position='absolute' // Using absolute to overlay on top of static content
+          zIndex={10}
+          top='40%'
+          left='150px' // Using left for absolute positioning
+          width='full' // Full width to allow sliding animations
+          className={contentAnimation}>
           <Heading color='#29f0cf' mb='10px' fontSize='60px'>
-            Your Band. Your Profits.
+            {currentContent.header}
           </Heading>
           <Text color='white' mb='20px' fontSize='30px'>
-            It's your band. It's your merch. You deserve 100% of your profits.
+            {currentContent.text}
           </Text>
+        </Box>
+        {/* Static Content */}
+        <Box
+          position='relative' // Static content stays in the flow of the document
+          zIndex={2}
+          top='60%' // Adjust this value to place your static content appropriately
+          ml='150px'
+          mt>
           <Text color='white' mb='20px' fontSize='20px'>
             Stream your audio. Sell your merch. Keep 100% of your profits.
           </Text>
