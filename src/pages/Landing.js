@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Text,
@@ -7,18 +8,34 @@ import {
   InputGroup,
   InputRightElement,
   HStack,
+  Center,
+  Icon,
 } from '@chakra-ui/react';
-import bg from '../assets/img/landing1.jpg';
+import bg1 from '../assets/img/landing1.jpg';
+import bg2 from '../assets/img/landing3.jpg';
+import bg3 from '../assets/img/landing2.jpg';
 import Header from '../components/Header';
+import { GoDotFill } from 'react-icons/go';
+
+// Array of background images
+const backgrounds = [bg1, bg2, bg3];
 
 const Landing = () => {
+  //bg state
+  const [currentBg, setCurrentBg] = useState(bg1); // State to keep track of the current background
+
+  //bg change handler
+  const changeBackground = (bg) => {
+    setCurrentBg(bg);
+  };
+
   return (
     <>
       <Header />
       <Box
         height='100vh'
         width='100vw'
-        bgImage={`url(${bg})`}
+        bgImage={`url(${currentBg})`}
         bgPosition='center'
         bgRepeat='no-repeat'
         bgSize='cover'
@@ -81,6 +98,20 @@ const Landing = () => {
             </InputGroup>
           </Box>
         </Box>
+        <Center mt='30px' zIndex={10} position={'relative'} top='400'>
+          <HStack>
+            {backgrounds.map((bg, index) => (
+              <Icon
+                key={index}
+                as={GoDotFill}
+                boxSize={'40px'}
+                color={currentBg === bg ? '#29f0cf' : 'gray'}
+                onClick={() => changeBackground(bg)}
+                cursor='pointer'
+              />
+            ))}
+          </HStack>
+        </Center>
       </Box>
     </>
   );
