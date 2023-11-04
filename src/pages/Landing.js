@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Landing.css';
 import {
   Box,
@@ -13,13 +13,18 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import bg1 from '../assets/img/landing1.jpg';
-import bg2 from '../assets/img/landing3.jpg';
-import bg3 from '../assets/img/landing2.jpg';
+import bg2 from '../assets/img/landing2.jpg';
+import bg3 from '../assets/img/landing3.jpg';
+import bg4 from '../assets/img/landing4.jpg';
+import bg5 from '../assets/img/landing5.jpg';
+import bg6 from '../assets/img/landing6.jpg';
+import bg7 from '../assets/img/landing7.jpg';
+
 import Header from '../components/Header';
 import { GoDotFill } from 'react-icons/go';
 
 // Array of background images
-const backgrounds = [bg1, bg2, bg3];
+const backgrounds = [bg1, bg2, bg4];
 
 //Array of content
 const content = [
@@ -60,6 +65,24 @@ const Landing = () => {
       }, 500); // This should be the total duration of both animations
     }
   };
+
+  // Function to go to the next background and content
+  const nextBackground = () => {
+    const nextBg = (currentBg + 1) % backgrounds.length;
+    changeBackground(nextBg);
+  };
+
+  // Set up the automatic transition
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isTransitioning) {
+        nextBackground();
+      }
+    }, 5000); // Change every 5 seconds
+
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  }, [currentBg, isTransitioning]); // Only re-run if these values change
 
   return (
     <>
@@ -135,6 +158,7 @@ const Landing = () => {
                 placeholder='Enter your email'
                 _placeholder={{ opacity: 1, color: 'gray.500' }}
                 color='white'
+                _focus={{ borderColor: '#05f2e6' }}
               />
               <InputRightElement width='10.75rem' m='10px'>
                 <Button
@@ -148,6 +172,7 @@ const Landing = () => {
                   _hover={{
                     transform: 'scale(0.97)',
                     color: 'black',
+                    bg: '#05f2e6',
                   }}>
                   Join The Waitlist
                 </Button>
