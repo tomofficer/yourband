@@ -130,10 +130,14 @@ const Landing = () => {
           left='150px' // Using left for absolute positioning
           width='full' // Full width to allow sliding animations
           className={contentAnimation}>
-          <Heading color='#29f0cf' mb='10px' fontSize='60px'>
+          <Heading
+            color='#29f0cf'
+            mb='10px'
+            fontSize='60px'
+            fontFamily='Poppins'>
             {currentContent.header}
           </Heading>
-          <Text color='white' mb='20px' fontSize='30px'>
+          <Text color='white' mb='20px' fontSize='30px' fontFamily='Oswald'>
             {currentContent.text}
           </Text>
         </Box>
@@ -144,40 +148,51 @@ const Landing = () => {
           top='60%' // Adjust this value to place your static content appropriately
           ml='150px'
           mt>
-          <Text color='white' mb='20px' fontSize='20px'>
+          <Text
+            color='white'
+            mb='20px'
+            ml='20px'
+            fontSize='20px'
+            fontFamily='Fira Sans'
+            fontWeight='900'>
             Stream your audio. Sell your merch. Keep 100% of your profits.
           </Text>
           <Box id='form' as='section'>
-            <InputGroup size='lg' maxW='800px'>
-              <Input
-                mb='20px'
-                py='30px'
-                borderRadius='68px'
-                border='3px solid #29f0cf'
-                pr='4.5rem'
-                placeholder='Enter your email'
-                _placeholder={{ opacity: 1, color: 'gray.500' }}
-                color='white'
-                _focus={{ borderColor: '#05f2e6' }}
-              />
-              <InputRightElement width='10.75rem' m='10px'>
-                <Button
-                  color='black'
-                  bg='#29f0cf'
-                  h='full'
-                  mb='2px'
+            <form action='https://formspree.io/f/xrgwdkko' method='POST'>
+              <InputGroup size='lg' maxW='800px'>
+                <Input
+                  type='email'
+                  name='email'
+                  mb='20px'
+                  py='30px'
                   borderRadius='68px'
-                  w='full'
-                  onClick={() => alert('Subscribed!')}
-                  _hover={{
-                    transform: 'scale(0.97)',
-                    color: 'black',
-                    bg: '#05f2e6',
-                  }}>
-                  Join The Waitlist
-                </Button>
-              </InputRightElement>
-            </InputGroup>
+                  border='3px solid #29f0cf'
+                  pr='4.5rem'
+                  placeholder='Enter your email'
+                  _placeholder={{ opacity: 1, color: 'gray.500' }}
+                  color='white'
+                  _focus={{ borderColor: '#05f2e6' }}
+                />
+                <InputRightElement width='10.75rem' m='10px'>
+                  <Button
+                    type='submit'
+                    color='black'
+                    bg='#29f0cf'
+                    h='full'
+                    mb='2px'
+                    borderRadius='68px'
+                    w='full'
+                    onClick={() => alert('Thanks for joining!')}
+                    _hover={{
+                      transform: 'scale(0.97)',
+                      color: 'black',
+                      bg: '#05f2e6',
+                    }}>
+                    Join The Waitlist
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </form>
           </Box>
         </Box>
         ;{/* Dots */}

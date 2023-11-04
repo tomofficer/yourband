@@ -41,7 +41,7 @@ const Header = () => {
         borderRadius='68px'
         px='40px'
         py='25px'
-        _hover={{ bg: '#23d6b8' }}>
+        _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
         Subscribe
       </Button>
     </Flex>
