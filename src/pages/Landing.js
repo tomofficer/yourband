@@ -64,7 +64,14 @@ const Landing = () => {
   return (
     <>
       <Header />
-      <Box position='relative' height='100vh' width='100vw' overflow='hidden'>
+      <Box
+        position='relative'
+        height='100vh'
+        width='100vw'
+        overflow='hidden'
+        style={{
+          animation: 'fadeIn 1s ease-in-out forwards',
+        }}>
         {/* Background images */}
         {backgrounds.map((bg, index) => (
           <Box
