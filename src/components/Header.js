@@ -38,6 +38,7 @@ const Header = () => {
       <Button
         bg='#29f0cf'
         color='black'
+        fontFamily='Poppins'
         borderRadius='68px'
         px='40px'
         py='25px'

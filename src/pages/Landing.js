@@ -177,6 +177,7 @@ const Landing = () => {
                   <Button
                     type='submit'
                     color='black'
+                    fontFamily='Poppins'
                     bg='#29f0cf'
                     h='full'
                     mb='2px'
