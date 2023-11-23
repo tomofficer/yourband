@@ -14,10 +14,9 @@ import {
 } from '@chakra-ui/react';
 import bg1 from '../assets/img/landing1.jpg';
 import bg2 from '../assets/img/landing2.jpg';
-
 import bg4 from '../assets/img/landing4.jpg';
-
 import Header from '../components/Header';
+import SignUpModal from '../components/SignUpModal';
 import { GoDotFill } from 'react-icons/go';
 
 // Array of background images
@@ -44,6 +43,11 @@ const Landing = () => {
   const [currentContent, setCurrentContent] = useState(content[0]);
   const [contentAnimation, setContentAnimation] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+
+  //Setter functions for sign up modal
+  const openSignUpModal = () => setSignUpModalOpen(true);
+  const closeSignUpModal = () => setSignUpModalOpen(false);
 
   const changeBackground = (index) => {
     if (index !== currentBg && !isTransitioning) {
@@ -84,6 +88,7 @@ const Landing = () => {
   return (
     <>
       <Header />
+      <SignUpModal isOpen={isSignUpModalOpen} onClose={closeSignUpModal} />
       <Box
         position='relative'
         height='100vh'

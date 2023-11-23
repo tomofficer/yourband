@@ -1,4 +1,4 @@
-import { auth } from './firebase';
+import { auth } from '../firebase.js';
 
 // Sign Up (Register)
 export const signUp = (email, password) => {

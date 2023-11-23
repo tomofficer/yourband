@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { auth } from './firebase'; //Importing the firebase auth module
+import { auth } from '../firebase'; //Importing the firebase auth module
 
 //Custom hook for validating user authentication
 export const useAuth = () => {
