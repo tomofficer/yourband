@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { VStack, Input, Button, useToast, Box, Image } from '@chakra-ui/react';
+import {
+  VStack,
+  Input,
+  Button,
+  useToast,
+  Box,
+  Image,
+  InputGroup,
+  InputRightElement,
+  IconButton,
+  Center,
+} from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signUp } from '../services/authService.js';
 import logo from '../assets/img/logo.png';
 
@@ -8,6 +20,8 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   //Define useToast variable (ChakraUI built-in error handling)
   const toast = useToast();
@@ -49,84 +63,116 @@ const SignUp = () => {
 
   return (
     <>
-      <VStack>
-        <Box w='250px' mb='30px'>
-          <Image src={logo} />
-        </Box>
-        <Input
-          bg='none'
-          border='2px solid #29f0cf'
-          borderRadius='68px'
-          w='300px'
-          h='50px'
-          type='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder='Email'
-          color='white'
-          _focus={{ borderColor: '#05f2e6' }}
-          _hover={{
-            borderColor: '#05f2e6',
-          }}
-        />
-        <Input
-          bg='none'
-          border='2px solid #29f0cf'
-          borderRadius='68px'
-          w='300px'
-          h='50px'
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='Password'
-          mt='20px'
-          color='white'
-          _focus={{ borderColor: '#05f2e6' }}
-          _hover={{
-            borderColor: '#05f2e6',
-          }}
-        />
-        <Input
-          bg='none'
-          border='2px solid #29f0cf'
-          borderRadius='68px'
-          w='300px'
-          h='50px'
-          type='password'
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder='Confirm Password'
-          mt='20px'
-          color='white'
-          _focus={{ borderColor: '#05f2e6' }}
-          _hover={{
-            borderColor: '#05f2e6',
-          }}
-        />
+      <Center>
+        <VStack>
+          <Box w='250px' mb='40px'>
+            <Image src={logo} />
+          </Box>
 
-        <Button
-          bg='#29f0cf'
-          color='black'
-          fontFamily='Poppins'
-          borderRadius='68px'
-          px='40px'
-          py='25px'
-          mt='40px'
-          onClick={handleSignUp}
-          _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
-          Sign Up
-        </Button>
-        <Button
-          color='#29f0cf'
-          bg='none'
-          fontFamily='Poppins'
-          px='40px'
-          py='25px'
-          mt='0px'
-          _hover={{ bg: 'none', transform: 'scale(0.97)' }}>
-          Sign In
-        </Button>
-      </VStack>
+          <Input
+            bg='none'
+            border='2px solid #29f0cf'
+            borderRadius='68px'
+            w='300px'
+            h='50px'
+            type='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder='Username'
+            color='white'
+            _focus={{ borderColor: '#05f2e6' }}
+            _hover={{
+              borderColor: '#05f2e6',
+            }}
+          />
+
+          <InputGroup>
+            <Input
+              pr='2.5rem'
+              type={showPassword ? 'text' : 'password'}
+              placeholder='Enter password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              bg='none'
+              border='2px solid #29f0cf'
+              borderRadius='68px'
+              w='300px'
+              h='50px'
+              mt='20px'
+              color='white'
+              _focus={{ borderColor: '#05f2e6' }}
+              _hover={{
+                borderColor: '#05f2e6',
+              }}
+            />
+            <InputRightElement height='100%'>
+              <IconButton
+                icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                size='sm'
+                onClick={() => setShowPassword(!showPassword)}
+                variant='unstyled'
+                pr='1rem'
+                top='15%'
+                color='white'
+              />
+            </InputRightElement>
+          </InputGroup>
+
+          <InputGroup>
+            <Input
+              pr='2.5rem'
+              type={showConfirmPassword ? 'text' : 'password'}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder='Confirm Password'
+              bg='none'
+              border='2px solid #29f0cf'
+              borderRadius='68px'
+              w='300px'
+              h='50px'
+              mt='20px'
+              color='white'
+              _focus={{ borderColor: '#05f2e6' }}
+              _hover={{
+                borderColor: '#05f2e6',
+              }}
+            />
+            <InputRightElement height='100%'>
+              <IconButton
+                icon={showConfirmPassword ? <ViewOffIcon /> : <ViewIcon />}
+                size='sm'
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                variant='unstyled'
+                pr='1rem'
+                top='15%'
+                color='white'
+              />
+            </InputRightElement>
+          </InputGroup>
+
+          <Button
+            bg='#29f0cf'
+            color='black'
+            fontFamily='Poppins'
+            borderRadius='68px'
+            px='40px'
+            py='25px'
+            mt='40px'
+            onClick={handleSignUp}
+            _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
+            Sign Up
+          </Button>
+          <Button
+            color='#29f0cf'
+            bg='none'
+            fontFamily='Poppins'
+            px='40px'
+            py='25px'
+            _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
+            Sign In
+          </Button>
+        </VStack>
+      </Center>
     </>
   );
 };
