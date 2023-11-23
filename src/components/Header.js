@@ -1,4 +1,4 @@
-import { Flex, Box, Link, Button, Image } from '@chakra-ui/react';
+import { Flex, Box, Button, Image } from '@chakra-ui/react';
 import logo from '../assets/img/logo.png';
 
 const Header = () => {

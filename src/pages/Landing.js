@@ -14,11 +14,8 @@ import {
 } from '@chakra-ui/react';
 import bg1 from '../assets/img/landing1.jpg';
 import bg2 from '../assets/img/landing2.jpg';
-import bg3 from '../assets/img/landing3.jpg';
+
 import bg4 from '../assets/img/landing4.jpg';
-import bg5 from '../assets/img/landing5.jpg';
-import bg6 from '../assets/img/landing6.jpg';
-import bg7 from '../assets/img/landing7.jpg';
 
 import Header from '../components/Header';
 import { GoDotFill } from 'react-icons/go';
