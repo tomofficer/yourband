@@ -7,15 +7,26 @@ const SignUp = () => {
   //State variables
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   //Define useToast variable (ChakraUI built-in error handling)
   const toast = useToast();
 
   //Signup handler with error handling (Chakra Toast)
   const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      toast({
+        title: 'Error.',
+        description: 'Passwords do not match.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return; // Stop the sign-up process if passwords don't match
+    }
+
     try {
       await signUp(email, password);
-      // Handle success
       toast({
         title: 'Account created.',
         description: 'You have successfully signed up!',
@@ -26,7 +37,6 @@ const SignUp = () => {
       // Optionally redirect to dashboard or other page
     } catch (error) {
       console.error(error.message);
-      // Handle errors - show error messages to user
       toast({
         title: 'Error.',
         description: error.message,
@@ -40,7 +50,7 @@ const SignUp = () => {
   return (
     <>
       <VStack>
-        <Box w='250px' mb='50px'>
+        <Box w='250px' mb='30px'>
           <Image src={logo} />
         </Box>
         <Input
@@ -76,23 +86,24 @@ const SignUp = () => {
             borderColor: '#05f2e6',
           }}
         />
-        {/* <Button
-          onClick={handleSignUp}
+        <Input
           bg='none'
           border='2px solid #29f0cf'
           borderRadius='68px'
-          px='40px'
-          py='30px'
-          color='#29f0cf'
+          w='300px'
+          h='50px'
+          type='password'
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder='Confirm Password'
+          mt='20px'
+          color='white'
           _focus={{ borderColor: '#05f2e6' }}
           _hover={{
             borderColor: '#05f2e6',
-            color: '#05f2e6',
-            transform: 'scale(0.97)',
           }}
-          mt='50px'>
-          Sign Up
-        </Button> */}
+        />
+
         <Button
           bg='#29f0cf'
           color='black'
@@ -101,6 +112,7 @@ const SignUp = () => {
           px='40px'
           py='25px'
           mt='40px'
+          onClick={handleSignUp}
           _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
           Sign Up
         </Button>
