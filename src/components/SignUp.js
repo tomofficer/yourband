@@ -1,18 +1,47 @@
 import React, { useState } from 'react';
-import { VStack, Input, Button } from '@chakra-ui/react';
+import { VStack, Input, Button, useToast } from '@chakra-ui/react';
 import { signUp } from '../services/authService.js';
 
 const SignUp = () => {
+  //State variables
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  //Define useToast variable (ChakraUI built-in error handling)
+  const toast = useToast();
+
+  // const handleSignUp = async () => {
+  //   try {
+  //     await signUp(email, password);
+  //     // Handle success - maybe redirect to dashboard or show success message
+  //   } catch (error) {
+  //     console.error(error.message);
+  //     // Handle errors - show error messages to user
+  //   }
+  // };
 
   const handleSignUp = async () => {
     try {
       await signUp(email, password);
-      // Handle success - maybe redirect to dashboard or show success message
+      // Handle success
+      toast({
+        title: 'Account created.',
+        description: 'You have successfully signed up!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+      // Optionally redirect to dashboard or other page
     } catch (error) {
       console.error(error.message);
       // Handle errors - show error messages to user
+      toast({
+        title: 'Error.',
+        description: error.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 

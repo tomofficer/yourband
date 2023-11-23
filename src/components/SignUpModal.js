@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
+  useToast,
 } from '@chakra-ui/react';
 import SignUp from './SignUp'; // Import your SignUp component
 
