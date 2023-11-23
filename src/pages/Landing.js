@@ -33,7 +33,7 @@ const content = [
     text: "It's Your Band. It's Your Merch. You deserve 100% of your profits.",
   },
   {
-    header: 'Better Than Bandcamp.',
+    header: 'Custom Layouts. Custom Storefronts.',
     text: 'Better layouts. Custom domains. No price gouging. No hidden fees.',
   },
   {
@@ -57,12 +57,12 @@ const Landing = () => {
         setCurrentBg(index);
         setCurrentContent(content[index]); // Set the new content
         setContentAnimation('slide-in'); // Slide in the new content
-      }, 250); // This should match the duration of the slideOutToRight animation
+      }, 350); // This should match the duration of the slideOutToRight animation
 
       setTimeout(() => {
         setIsTransitioning(false);
         setContentAnimation(''); // Reset the animation class
-      }, 500); // This should be the total duration of both animations
+      }, 700); // This should be the total duration of both animations
     }
   };
 
@@ -172,6 +172,9 @@ const Landing = () => {
                   _placeholder={{ opacity: 1, color: 'gray.500' }}
                   color='white'
                   _focus={{ borderColor: '#05f2e6' }}
+                  _hover={{
+                    borderColor: '#05f2e6',
+                  }}
                 />
                 <InputRightElement width='10.75rem' m='10px'>
                   <Button
