@@ -17,3 +17,6 @@ function App() {
 }
 
 export default App;
+
+//todo : set up storage database and install firebase storage SDK
+//todo : set up ENV variables for user auth
