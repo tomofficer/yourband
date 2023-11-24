@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -5,9 +6,13 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import SignUp from './SignUp'; // Import your SignUp component
+import SignUp from './SignUp';
+import LogIn from './LogIn';
 
 const SignUpModal = ({ isOpen, onClose }) => {
+  //State for switching between SignUp and LogIn
+  const [showLogIn, setShowLogIn] = useState(false);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay sx={{ backdropFilter: 'blur(10px)' }} />
@@ -27,7 +32,11 @@ const SignUpModal = ({ isOpen, onClose }) => {
           _hover={{ transform: 'scale(1.2)' }}
         />
         <ModalBody>
-          <SignUp />
+          {!showLogIn ? (
+            <SignUp setShowLogIn={setShowLogIn} showLogIn={showLogIn} />
+          ) : (
+            <LogIn />
+          )}
         </ModalBody>
       </ModalContent>
     </Modal>

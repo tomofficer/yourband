@@ -15,7 +15,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signUp } from '../services/authService.js';
 import logo from '../assets/img/logo.png';
 
-const SignUp = () => {
+const SignUp = ({ setShowLogIn, showLogIn }) => {
   //State variables
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,6 +38,12 @@ const SignUp = () => {
       });
       return; // Stop the sign-up process if passwords don't match
     }
+
+    //Show LogIn Handler
+    const showLoginHandler = () => {
+      setShowLogIn(true);
+      console.log('testing is true');
+    };
 
     try {
       await signUp(email, password);
@@ -168,6 +174,7 @@ const SignUp = () => {
             fontFamily='Poppins'
             px='40px'
             py='25px'
+            onClick={setShowLogIn}
             _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
             Sign In
           </Button>
