@@ -12,6 +12,7 @@ import LogIn from './LogIn';
 const SignUpModal = ({ isOpen, onClose }) => {
   //State for switching between SignUp and LogIn
   const [showLogIn, setShowLogIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(true);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -32,10 +33,11 @@ const SignUpModal = ({ isOpen, onClose }) => {
           _hover={{ transform: 'scale(1.2)' }}
         />
         <ModalBody>
-          {!showLogIn ? (
-            <SignUp setShowLogIn={setShowLogIn} showLogIn={showLogIn} />
-          ) : (
-            <LogIn />
+          {showLogIn && (
+            <LogIn setShowSignUp={setShowSignUp} setShowLogIn={setShowLogIn} />
+          )}
+          {showSignUp && (
+            <SignUp setShowLogIn={setShowLogIn} setShowSignUp={setShowSignUp} />
           )}
         </ModalBody>
       </ModalContent>

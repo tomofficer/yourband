@@ -15,13 +15,19 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { signUp } from '../services/authService.js';
 import logo from '../assets/img/logo.png';
 
-const SignUp = ({ setShowLogIn, showLogIn }) => {
+const SignUp = ({ setShowLogIn, setShowSignUp }) => {
   //State variables
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Show LogIn Handler
+  const showLoginHandler = () => {
+    setShowLogIn(true);
+    setShowSignUp(false);
+  };
 
   //Define useToast variable (ChakraUI built-in error handling)
   const toast = useToast();
@@ -38,12 +44,6 @@ const SignUp = ({ setShowLogIn, showLogIn }) => {
       });
       return; // Stop the sign-up process if passwords don't match
     }
-
-    //Show LogIn Handler
-    const showLoginHandler = () => {
-      setShowLogIn(true);
-      console.log('testing is true');
-    };
 
     try {
       await signUp(email, password);
@@ -174,9 +174,9 @@ const SignUp = ({ setShowLogIn, showLogIn }) => {
             fontFamily='Poppins'
             px='40px'
             py='25px'
-            onClick={setShowLogIn}
+            onClick={showLoginHandler}
             _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
-            Sign In
+            Log In
           </Button>
         </VStack>
       </Center>
