@@ -113,7 +113,7 @@ const LogIn = ({ setShowSignUp, setShowLogIn }) => {
           borderRadius='68px'
           px='40px'
           py='25px'
-          mt='40px'
+          mt='118px'
           onClick={handleLogIn}
           _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
           Log In

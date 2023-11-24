@@ -20,7 +20,7 @@ const SignUpModal = ({ isOpen, onClose }) => {
       <ModalContent
         maxW='900px'
         w='500px'
-        h='auto'
+        h='620px'
         pt='50px'
         pb='40px'
         bg='black'
