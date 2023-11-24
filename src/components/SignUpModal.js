@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -14,8 +14,22 @@ const SignUpModal = ({ isOpen, onClose }) => {
   const [showLogIn, setShowLogIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(true);
 
+  // Reset state when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setShowSignUp(true);
+      setShowLogIn(false);
+    }
+  }, [isOpen]);
+
+  // Custom onClose handler
+  const handleClose = () => {
+    onClose(); // Call the original onClose function passed as prop
+    // Additional actions if needed
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal isOpen={isOpen} onClose={handleClose} isCentered>
       <ModalOverlay sx={{ backdropFilter: 'blur(10px)' }} />
       <ModalContent
         maxW='900px'
