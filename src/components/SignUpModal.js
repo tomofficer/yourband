@@ -47,11 +47,10 @@ const SignUpModal = ({ isOpen, onClose }) => {
           _hover={{ transform: 'scale(1.2)' }}
         />
         <ModalBody>
-          {showLogIn && (
-            <LogIn setShowSignUp={setShowSignUp} setShowLogIn={setShowLogIn} />
-          )}
-          {showSignUp && (
+          {showSignUp ? (
             <SignUp setShowLogIn={setShowLogIn} setShowSignUp={setShowSignUp} />
+          ) : (
+            <LogIn setShowSignUp={setShowSignUp} setShowLogIn={setShowLogIn} />
           )}
         </ModalBody>
       </ModalContent>
