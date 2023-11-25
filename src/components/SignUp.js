@@ -96,7 +96,7 @@ const SignUp = ({ setShowLogIn, setShowSignUp }) => {
             <Input
               pr='2.5rem'
               type={showPassword ? 'text' : 'password'}
-              placeholder='Enter password'
+              placeholder='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               bg='none'

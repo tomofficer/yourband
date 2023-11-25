@@ -66,7 +66,7 @@ const LogIn = ({ setShowSignUp, setShowLogIn }) => {
           type='email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder='Email'
+          placeholder='Username'
           color='white'
           _focus={{ borderColor: '#05f2e6' }}
           _hover={{
