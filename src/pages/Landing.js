@@ -18,7 +18,6 @@ import bg4 from '../assets/img/landing4.jpg';
 import Header from '../components/Header';
 import SignUpModal from '../components/SignUpModal';
 import { GoDotFill } from 'react-icons/go';
-
 // Array of background images
 const backgrounds = [bg1, bg2, bg4];
 
@@ -29,7 +28,7 @@ const content = [
     text: "It's Your Band. It's Your Merch. You deserve 100% of your profits.",
   },
   {
-    header: 'Custom Layouts. Custom Storefronts.',
+    header: 'Custom Storefronts.',
     text: 'Better layouts. Custom domains. No price gouging. No hidden fees.',
   },
   {
@@ -38,16 +37,11 @@ const content = [
   },
 ];
 
-const Landing = () => {
+const Landing = ({ isSignUpModalOpen, closeSignUpModal }) => {
   const [currentBg, setCurrentBg] = useState(0);
   const [currentContent, setCurrentContent] = useState(content[0]);
   const [contentAnimation, setContentAnimation] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
-
-  //Setter functions for sign up modal
-  const openSignUpModal = () => setSignUpModalOpen(true);
-  const closeSignUpModal = () => setSignUpModalOpen(false);
 
   const changeBackground = (index) => {
     if (index !== currentBg && !isTransitioning) {
