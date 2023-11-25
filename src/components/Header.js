@@ -11,9 +11,14 @@ const Header = () => {
 
   //State for signup modal
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+  const [showLogIn, setShowLogIn] = useState(false);
 
   //Setter functions for sign up modal
   const openSignUpModal = () => setSignUpModalOpen(true);
+  const openLogInModal = () => {
+    setSignUpModalOpen(true);
+    setShowLogIn(true);
+  };
   const closeSignUpModal = () => setSignUpModalOpen(false);
 
   return (
@@ -49,18 +54,29 @@ const Header = () => {
           Pricing
         </Link>
       </Flex> */}
-
-        <Button
-          bg='#29f0cf'
-          color='black'
-          fontFamily='Poppins'
-          borderRadius='68px'
-          px='40px'
-          py='25px'
-          onClick={openSignUpModal}
-          _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
-          Sign Up
-        </Button>
+        <Box>
+          <Button
+            color='#29f0cf'
+            bg='none'
+            fontFamily='Poppins'
+            px='20px'
+            py='25px'
+            // onClick={openLogInModal} *NEED TO TROUBLESHOOT STATE ISSUE
+            _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
+            Log In
+          </Button>
+          <Button
+            bg='#29f0cf'
+            color='black'
+            fontFamily='Poppins'
+            borderRadius='68px'
+            px='40px'
+            py='25px'
+            onClick={openSignUpModal}
+            _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
+            Sign Up
+          </Button>
+        </Box>
       </Flex>
       <SignUpModal isOpen={isSignUpModalOpen} onClose={closeSignUpModal} />
     </>
