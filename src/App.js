@@ -12,7 +12,7 @@ function App() {
         {/* <AuthHandler /> Include AuthHandler within Router */}
         <Routes>
           <Route path='/' element={<Landing />} />
-          {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+          <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </Router>
     </ChakraProvider>

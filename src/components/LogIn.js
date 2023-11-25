@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   VStack,
   Input,
@@ -20,6 +21,7 @@ const LogIn = ({ setShowSignUp, setShowLogIn }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate();
 
   // Show SignUp Handler
   const showSignUpHandler = () => {
@@ -37,7 +39,7 @@ const LogIn = ({ setShowSignUp, setShowLogIn }) => {
         duration: 5000,
         isClosable: true,
       });
-      // Optionally redirect to dashboard or other page
+      navigate('/dashboard');
     } catch (error) {
       console.error(error.message);
       toast({

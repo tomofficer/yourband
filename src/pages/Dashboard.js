@@ -1,12 +1,29 @@
-import { Box, Text } from '@chakra-ui/react';
+import React from 'react';
+import { getAuth, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate('/'); // Redirect to home or login page
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error('Logout Error:', error);
+      });
+  };
+
   return (
-    <>
-      <Box>
-        <Text>This is the dashboard.</Text>
-      </Box>
-    </>
+    <div>
+      <h1>This is the dashboard.</h1>
+      <button onClick={handleLogout}>Logout</button>
+      {/* Rest of your dashboard content */}
+    </div>
   );
 };
 
