@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Flex, Box, Button, Image } from '@chakra-ui/react';
 import logo from '../assets/img/logo.png';
 import { GoDotFill } from 'react-icons/go';
@@ -8,6 +9,9 @@ import SignUpModal from './SignUpModal';
 const Header = () => {
   //Testing the useAuth function
   const currentUser = useAuth();
+
+  //Navigation variable
+  const navigate = useNavigate();
 
   //State for signup modal
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);

@@ -9,7 +9,7 @@ import {
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 
-const SignUpModal = ({ isOpen, onClose }) => {
+const SignUpModal = ({ isOpen, onClose, isSignUp }) => {
   //State for switching between SignUp and LogIn
   const [showLogIn, setShowLogIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(true);
@@ -20,7 +20,7 @@ const SignUpModal = ({ isOpen, onClose }) => {
       setShowSignUp(true);
       setShowLogIn(false);
     }
-  }, [isOpen]);
+  }, [isOpen, isSignUp]);
 
   // Custom onClose handler
   const handleClose = () => {
