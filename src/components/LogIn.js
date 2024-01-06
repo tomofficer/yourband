@@ -11,6 +11,7 @@ import {
   InputRightElement,
   IconButton,
   Center,
+  Text,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { logIn } from '../services/authService.js'; // Import the logIn function
@@ -110,16 +111,20 @@ const LogIn = ({ signUpClick }) => {
           px='40px'
           py='25px'
           mt='118px'
+          mb='0px'
           onClick={handleLogIn}
           _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
           Log In
         </Button>
+        <Text fontSize='xs' color='gray.400'>
+          Don't have an account yet? Create a new one below
+        </Text>
         <Button
           color='#29f0cf'
           bg='none'
           fontFamily='Poppins'
           px='40px'
-          py='25px'
+          // py='25px'
           onClick={signUpClick}
           _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
           Sign Up
