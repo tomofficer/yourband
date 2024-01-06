@@ -12,8 +12,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/signup' element={<SignUpModal isSignUp />} />
-          <Route path='/login' element={<SignUpModal />} />
+          {/* <Route path='/signup' element={<SignUpModal />} />
+          <Route path='/login' element={<SignUpModal />} /> */}
         </Routes>
       </Router>
     </ChakraProvider>

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -9,27 +8,9 @@ import {
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 
-const SignUpModal = ({ isOpen, onClose, isSignUp }) => {
-  //State for switching between SignUp and LogIn
-  const [showLogIn, setShowLogIn] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(true);
-
-  // Reset state when modal closes
-  useEffect(() => {
-    if (!isOpen) {
-      setShowSignUp(true);
-      setShowLogIn(false);
-    }
-  }, [isOpen, isSignUp]);
-
-  // Custom onClose handler
-  const handleClose = () => {
-    onClose(); // Call the original onClose function passed as prop
-    // Additional actions if needed
-  };
-
+const SignUpModal = ({ isOpen, onClose, toggle, loginClick, signUpClick }) => {
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} isCentered>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay sx={{ backdropFilter: 'blur(10px)' }} />
       <ModalContent
         maxW='900px'
@@ -47,11 +28,9 @@ const SignUpModal = ({ isOpen, onClose, isSignUp }) => {
           _hover={{ transform: 'scale(1.2)' }}
         />
         <ModalBody>
-          {showSignUp ? (
-            <SignUp setShowLogIn={setShowLogIn} setShowSignUp={setShowSignUp} />
-          ) : (
-            <LogIn setShowSignUp={setShowSignUp} setShowLogIn={setShowLogIn} />
-          )}
+          {isOpen && toggle === 'signup' && <SignUp loginClick={loginClick} />}
+
+          {isOpen && toggle === 'login' && <LogIn signUpClick={signUpClick} />}
         </ModalBody>
       </ModalContent>
     </Modal>

@@ -13,17 +13,27 @@ const Header = () => {
   //Navigation variable
   const navigate = useNavigate();
 
-  //State for signup modal
-  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
-  const [showLogIn, setShowLogIn] = useState(false);
+  //State
+  const [modalIsOpen, setModalIsOpen] = useState(false); //Open Modal
+  const [modalToggle, setModalToggle] = useState(''); //Toggle content
 
-  //Setter functions for sign up modal
-  const openSignUpModal = () => setSignUpModalOpen(true);
-  const openLogInModal = () => {
-    setSignUpModalOpen(true);
-    setShowLogIn(true);
+  //Click handlers
+  const closeSignUpModal = () => {
+    setModalIsOpen(false);
+    setModalToggle('');
   };
-  const closeSignUpModal = () => setSignUpModalOpen(false);
+
+  const loginClick = () => {
+    setModalIsOpen(true);
+    setModalToggle('login');
+    console.log('Toggle state: ', modalToggle);
+  };
+
+  const signUpClick = () => {
+    setModalIsOpen(true);
+    setModalToggle('signup');
+    console.log('Toggle state: ', modalToggle);
+  };
 
   return (
     <>
@@ -65,7 +75,7 @@ const Header = () => {
             fontFamily='Poppins'
             px='20px'
             py='25px'
-            // onClick={openLogInModal} *NEED TO TROUBLESHOOT STATE ISSUE
+            onClick={loginClick}
             _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
             Log In
           </Button>
@@ -76,13 +86,19 @@ const Header = () => {
             borderRadius='68px'
             px='40px'
             py='25px'
-            onClick={openSignUpModal}
+            onClick={signUpClick}
             _hover={{ bg: '#05f2e6', transform: 'scale(0.97)' }}>
             Sign Up
           </Button>
         </Box>
       </Flex>
-      <SignUpModal isOpen={isSignUpModalOpen} onClose={closeSignUpModal} />
+      <SignUpModal
+        isOpen={modalIsOpen}
+        onClose={closeSignUpModal}
+        toggle={modalToggle}
+        loginClick={loginClick}
+        signUpClick={signUpClick}
+      />
     </>
   );
 };

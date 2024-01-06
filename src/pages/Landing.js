@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 import {
   Box,
@@ -16,7 +17,6 @@ import bg1 from '../assets/img/landing1.jpg';
 import bg2 from '../assets/img/landing2.jpg';
 import bg4 from '../assets/img/landing4.jpg';
 import Header from '../components/Header';
-import SignUpModal from '../components/SignUpModal';
 import { GoDotFill } from 'react-icons/go';
 // Array of background images
 const backgrounds = [bg1, bg2, bg4];
@@ -37,11 +37,13 @@ const content = [
   },
 ];
 
-const Landing = ({ isSignUpModalOpen, closeSignUpModal }) => {
+const Landing = () => {
   const [currentBg, setCurrentBg] = useState(0);
   const [currentContent, setCurrentContent] = useState(content[0]);
   const [contentAnimation, setContentAnimation] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const navigate = useNavigate();
 
   const changeBackground = (index) => {
     if (index !== currentBg && !isTransitioning) {
@@ -82,7 +84,6 @@ const Landing = ({ isSignUpModalOpen, closeSignUpModal }) => {
   return (
     <>
       <Header />
-      <SignUpModal isOpen={isSignUpModalOpen} onClose={closeSignUpModal} />
       <Box
         position='relative'
         height='100vh'
@@ -195,7 +196,7 @@ const Landing = ({ isSignUpModalOpen, closeSignUpModal }) => {
             </form>
           </Box>
         </Box>
-        ;{/* Dots */}
+        {/* Dots */}
         <Center
           mt='30px'
           zIndex={2}

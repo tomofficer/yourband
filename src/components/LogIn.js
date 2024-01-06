@@ -16,18 +16,12 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { logIn } from '../services/authService.js'; // Import the logIn function
 import logo from '../assets/img/logo.png';
 
-const LogIn = ({ setShowSignUp, setShowLogIn }) => {
+const LogIn = ({ signUpClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-
-  // Show SignUp Handler
-  const showSignUpHandler = () => {
-    setShowLogIn(false);
-    setShowSignUp(true);
-  };
 
   const handleLogIn = async () => {
     try {
@@ -126,7 +120,7 @@ const LogIn = ({ setShowSignUp, setShowLogIn }) => {
           fontFamily='Poppins'
           px='40px'
           py='25px'
-          onClick={showSignUpHandler}
+          onClick={signUpClick}
           _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
           Sign Up
         </Button>
