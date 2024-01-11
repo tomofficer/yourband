@@ -1,10 +1,15 @@
-import { Box, Text, VStack, HStack } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, Text, VStack, HStack, Button } from '@chakra-ui/react';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { FaPlus } from 'react-icons/fa';
+import AddMusicModal from '../components/AddMusicModal';
 
 const Dashboard = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalToggle, setModalToggle] = useState('');
+
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -20,6 +25,12 @@ const Dashboard = () => {
       });
   };
 
+  const addMusicClick = () => {
+    setModalToggle('addMusic');
+    setModalIsOpen(true);
+    console.log('toggle:', modalToggle, 'modal open?:', modalIsOpen);
+  };
+
   return (
     <>
       <Box
@@ -28,14 +39,14 @@ const Dashboard = () => {
         h='100vh'
         justifyContent='center'
         alignItems='center'>
-        <section>
+        <section id='header'>
           <Header />
           {/* <Button bg='none' color='white' onClick={handleLogout}>
             Logout
           </Button> */}
         </section>
 
-        <section>
+        <section id='buttons'>
           <Box display='flex' color='#29f0cf'>
             <HStack spacing={20}>
               <VStack spacing={4}>
@@ -43,11 +54,12 @@ const Dashboard = () => {
                   border='2px #29f0cf solid'
                   p='20px'
                   borderRadius='50px'
+                  onClick={addMusicClick}
                   _hover={{ transform: 'scale(0.97)' }}>
                   <FaPlus color='#29f0cf' size='100px' />
                 </Box>
                 <Text fontSize='20px' fontFamily='poppins'>
-                  Add An Album
+                  Add Music
                 </Text>
               </VStack>
               <VStack spacing={4}>
@@ -66,6 +78,12 @@ const Dashboard = () => {
           </Box>
         </section>
       </Box>
+      <AddMusicModal
+        isOpen={modalIsOpen}
+        toggle={modalToggle}
+        setModalIsOpen={setModalIsOpen}
+        setModalToggle={setModalToggle}
+      />
     </>
   );
 };

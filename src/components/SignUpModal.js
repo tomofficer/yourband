@@ -7,10 +7,17 @@ import {
 } from '@chakra-ui/react';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
+import AddMusic from './AddMusic';
 
-const SignUpModal = ({ isOpen, onClose, toggle, loginClick, signUpClick }) => {
+const SignUpModal = ({
+  modalIsOpen,
+  onClose,
+  modalToggle,
+  loginClick,
+  signUpClick,
+}) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal isOpen={modalIsOpen} onClose={onClose} isCentered>
       <ModalOverlay sx={{ backdropFilter: 'blur(10px)' }} />
       <ModalContent
         maxW='900px'
@@ -28,9 +35,13 @@ const SignUpModal = ({ isOpen, onClose, toggle, loginClick, signUpClick }) => {
           _hover={{ transform: 'scale(1.2)' }}
         />
         <ModalBody>
-          {isOpen && toggle === 'signup' && <SignUp loginClick={loginClick} />}
+          {modalIsOpen && modalToggle === 'signup' && (
+            <SignUp loginClick={loginClick} />
+          )}
 
-          {isOpen && toggle === 'login' && <LogIn signUpClick={signUpClick} />}
+          {modalIsOpen && modalToggle === 'login' && (
+            <LogIn signUpClick={signUpClick} />
+          )}
         </ModalBody>
       </ModalContent>
     </Modal>

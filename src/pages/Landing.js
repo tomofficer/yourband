@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 import {
   Box,
@@ -37,13 +36,16 @@ const content = [
   },
 ];
 
-const Landing = () => {
+const Landing = ({
+  modalToggle,
+  setModalToggle,
+  modalIsOpen,
+  setModalIsOpen,
+}) => {
   const [currentBg, setCurrentBg] = useState(0);
   const [currentContent, setCurrentContent] = useState(content[0]);
   const [contentAnimation, setContentAnimation] = useState('');
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const navigate = useNavigate();
 
   const changeBackground = (index) => {
     if (index !== currentBg && !isTransitioning) {
@@ -83,7 +85,12 @@ const Landing = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        modalToggle={modalToggle}
+        setModalToggle={setModalToggle}
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+      />
       <Box
         position='relative'
         height='100vh'

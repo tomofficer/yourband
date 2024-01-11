@@ -13,11 +13,6 @@ const Header = () => {
   //Navigation variable
   const navigate = useNavigate();
 
-  //State
-  const [modalIsOpen, setModalIsOpen] = useState(false); //Open Modal
-  const [modalToggle, setModalToggle] = useState(''); //Toggle content
-
-  //Click handlers
   const closeSignUpModal = () => {
     setModalIsOpen(false);
     setModalToggle('');
@@ -26,14 +21,15 @@ const Header = () => {
   const loginClick = () => {
     setModalIsOpen(true);
     setModalToggle('login');
-    console.log('Toggle state: ', modalToggle);
   };
 
   const signUpClick = () => {
     setModalIsOpen(true);
     setModalToggle('signup');
-    console.log('Toggle state: ', modalToggle);
   };
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalToggle, setModalToggle] = useState('');
 
   return (
     <>
@@ -75,6 +71,7 @@ const Header = () => {
             fontFamily='Poppins'
             px='20px'
             py='25px'
+            // onClick={openLogInModal} *NEED TO TROUBLESHOOT STATE ISSUE
             onClick={loginClick}
             _hover={{ bg: 'none', color: '#05f2e6', transform: 'scale(0.97)' }}>
             Log In
@@ -93,9 +90,9 @@ const Header = () => {
         </Box>
       </Flex>
       <SignUpModal
-        isOpen={modalIsOpen}
+        modalIsOpen={modalIsOpen}
         onClose={closeSignUpModal}
-        toggle={modalToggle}
+        modalToggle={modalToggle}
         loginClick={loginClick}
         signUpClick={signUpClick}
       />
