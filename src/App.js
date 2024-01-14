@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
+import AddMusicPage from './pages/AddMusicPage';
 
 function App() {
   //Modal toggle
@@ -35,6 +36,7 @@ function App() {
               />
             }
           />
+          <Route path='/add-music' element={<AddMusicPage />} />
         </Routes>
       </Router>
     </ChakraProvider>
